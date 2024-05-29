@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CATALYST CATALOGING LIBRARY SYSTEM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("USePBuildingImage4.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(139, 0, 0, 0.5);
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .header-left-image {
+            background-image: url("useplogo.png");
+            background-position: center;
+            background-size: contain;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        .header-right-image {
+            background-image: url("cic.png");
+            background-position: center;
+            background-size: contain;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.671);
+            color: #fff;
+        }
+
+        td[contenteditable] {
+            background-color: #fff;
+            cursor: text;
+        }
+
+        .button {
+            background-color: #2FA4E7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #1c7bbf;
+        }
+
+        .delete-button {
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-button:hover {
+            background-color: #FF4737;
+        }
+
+        .short {
+            width: 50px;
+        }
+
+        .medium {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">CATALOGING LIBRARY SYSTEM
+        <div class="header-left-image"></div>
+        <div class="header-right-image"></div>
+    </div>
+
+    <div class="container">
+        <div class="header" style="background-color: rgba(0, 0, 0, 0.671);">MARC Screen</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="short">Tags</th>
+                    <th class="short">Ind</th>
+                    <th class="medium">Bibliographic Information</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="short" contenteditable="true"></td>
+                    <td class="short" contenteditable="true"></td>
+                    <td class="medium" contenteditable="true"></td>
+                    <td class="short"><button class="delete-button" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="button" onclick="addRow()">Add Tag</button>
+        <button class="button" onclick="save()"> Save</button>
+        <br></br>
+        <div style="margin-left:70%">
+        <button class="button" type="button" onclick="back()">Return</button>
+    </div>
+    </div>
+  
+
+    <script>
+        function back() {
+            window.location.href = "FirstPage.html";
+        }
+
+        function addRow() {
+            var tableBody = document.querySelector('tbody');
+            var newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="short" contenteditable="true"></td>
+                <td class="short" contenteditable="true"></td>
+                <td class="medium" contenteditable="true"></td>
+                <td><button class="delete-button" onclick="deleteRow(this)">Delete</button></td>
+            `;
+            tableBody.appendChild(newRow);
+        }
+
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+
+</html>

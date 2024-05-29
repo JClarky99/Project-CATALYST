@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CATALYST CATALOGING LIBRARY SYSTEM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url("USePBuildingImage4.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(139, 0, 0, 0.5); /* Add semi-transparent red background color to header */
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative; /* Position header relative to its original position */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .header-left-image {
+            background-image: url("useplogo.png"); /* Use PNG format with transparent background */
+            background-position: center;
+            background-size: contain; /* Ensure image fits in header and maintains aspect ratio */
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        .header-right-image {
+            background-image: url("cic.png"); /* Use PNG format with transparent background */
+            background-position: center;
+            background-size: contain; /* Ensure image fits in header and maintains aspect ratio */
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .input-container {
+            background-color: #FFFFFF;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: 400;
+            background-color: transparent;
+        }
+
+        .input-field.invalid {
+            border: 2px solid red;
+        }
+
+        .header-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            color: #2FA4E7;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            margin-right: 500px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-box {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 600px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Adjust space between buttons */
+            width: 100%;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+
+        .buttons button, .buttons a button {
+            padding: 10px 20px; /* Adjust padding for buttons */
+            border: none;
+            border-radius: 5px;
+            background-color: #2FA4E7;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Add smooth transition effect */
+            flex: 1 1 calc(33% - 20px); /* Flex to take up one-third of the container width, minus the gap */
+            margin: 5px; /* Add margin for spacing */
+            text-align: center;
+        }
+
+        .buttons button:hover, .buttons a button:hover {
+            background-color: #1c7bbf; /* Darker shade on hover */
+        }
+
+        .button2 {
+            flex: 1 1 100%; /* Make the admin button take the full width */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header"> CATALOGING LIBRARY SYSTEM
+        <div class="header-left-image"></div>
+        <div class="header-right-image"></div>
+    </div>
+    <div class="header-container">
+        <div class="form-header">
+            <div class="header-title">Student Log In</div>
+        </div>
+        <div class="content">
+            <div class="content-box">
+                <form onsubmit="return false;">
+                    <button class="back-button" onclick="back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <br> </br>
+                    <div class="input-container">
+                        <input type="email" name="email" id="email" class="input-field" placeholder="Email" />
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="password" id="password" class="input-field" placeholder="Password" />
+                    </div>
+                    <div class="buttons">
+                        <button class="button" type="button" onclick="login()">Log In</button>
+                        <button class="button" type="button" onclick="createAccount()">Create Account</button>
+                    </div>
+                    <div class="buttons">
+                        <a href="adminLogIn.html">
+                            <button class="button2" type="button">Admin</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function login() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Check if the email and password are not empty
+        if (email !== "" && password !== "") {
+            // Retrieve students data from localStorage
+            var students = JSON.parse(localStorage.getItem('students')) || [];
+
+            // Find the student with the provided email
+            var student = students.find(function (s) {
+                return s.email === email;
+            });
+
+            // Check if student exists and is accepted
+            if (student && student.status === 'accepted') {
+                // Redirect to the MARC Screen page
+                window.location.href = "marcscreen.html";
+            } else {
+                alert("Your account has not been accepted yet or invalid email/password.");
+            }
+        } else {
+            alert("Please enter both email and password.");
+        }
+    }
+
+    function createAccount() {
+        window.location.href = "studentCreateAccount.html";
+    }
+
+    function back() {
+        window.location.href = "FirstPage.html";
+    }
+</script>
+</html>

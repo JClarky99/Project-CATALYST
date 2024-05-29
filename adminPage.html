@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard - Student Management</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("USePBuildingImage4.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(139, 0, 0, 0.5);
+      color: #FFFFFF;
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .header-left-image {
+      background-image: url("useplogo.png");
+      background-position: center;
+      background-size: contain;
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+ 
+    .header-right-image {
+      background-image: url("cic.png");
+      background-position: center;
+      background-size: contain;
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 10px;
+      color: #8B0000;
+    }
+
+    .section form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section form input,
+    .section form select,
+    .section form button {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .section form button {
+      background-color: #2FA4E7; /* Sky blue color */
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .section form button:hover {
+      background-color: #2FA4E7; /* Darker shade on hover */
+    }
+
+    .pending-students {
+      margin-top: 20px;
+    }
+
+    .pending-students h2 {
+      margin-bottom: 10px;
+      color: #8B0000;
+    }
+
+    .pending-students ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .pending-students li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+
+    .pending-students li .buttons {
+      display: flex;
+    }
+
+    .pending-students li .buttons button {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">CATALOGING LIBRARY SYSTEM
+    <div class="header-left-image"></div>
+    <div class="header-right-image"></div>
+  </div>
+
+  <div class="container">
+    <div class="pending-students">
+      <h2>Pending Students List</h2>
+      <ul id="pendingStudentsList">
+        <!-- Pending students will be dynamically added here -->
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Remove Student</h2>
+      <form id="removeStudentForm">
+        <input type="email" placeholder="Student Email" required>
+        <button type="submit">Remove Student</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>View Student Submissions</h2>
+      <form id="viewSubmissionsForm" action="browse_submissions.html" method="GET">
+        <input type="email" name="studentEmail" placeholder="Student Email" required>
+        <button type="submit">View Submissions</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <form>
+        <button type="button" onclick="browseStudents()">Students List</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function loadPendingStudents() {
+      const students = JSON.parse(localStorage.getItem('students')) || [];
+      const pendingStudents = students.filter(student => student.status === 'pending');
+      const pendingStudentsList = document.getElementById('pendingStudentsList');
+
+      pendingStudentsList.innerHTML = '';
+
+      pendingStudents.forEach((student, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div>${student.firstName} ${student.lastName} (${student.email})</div>
+          <div class="buttons">
+            <button type="button" onclick="acceptStudent(${index})">Accept</button>
+            <button type="button" onclick="declineStudent(${index})">Decline</button>
+          </div>
+        `;
+        pendingStudentsList.appendChild(li);
+      });
+    }
+
+    function acceptStudent(index) {
+      let students = JSON.parse(localStorage.getItem('students'));
+      students[index].status = 'accepted';
+      localStorage.setItem('students', JSON.stringify(students));
+      loadPendingStudents();
+    }
+
+    function declineStudent(index) {
+      let students = JSON.parse(localStorage.getItem('students'));
+      students.splice(index, 1); // Remove the declined student
+      localStorage.setItem('students', JSON.stringify(students));
+      loadPendingStudents();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPendingStudents);
+  </script>
+</body>
+</html>

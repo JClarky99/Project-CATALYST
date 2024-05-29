@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CATALYST CATALOGING LIBRARY SYSTEM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        /* Add some basic styling to make it look better */
+        body {
+            margin: 0; /* Remove default margin added by browsers */
+            padding: 0; /* Remove default padding added by browsers */
+            font-family: Arial, sans-serif;
+            background-image: url("USePBuildingImage4.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(139, 0, 0, 0.5); /* Add semi-transparent red background color to header */
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative; /* Position header relative to its original position */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .header-left-image {
+            background-image: url("useplogo.png"); /* Use PNG format with transparent background */
+            background-position: center;
+            background-size: contain; /* Ensure image fits in header and maintains aspect ratio */
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        .header-right-image {
+            background-image: url("cic.png"); /* Use PNG format with transparent background */
+            background-position: center;
+            background-size: contain; /* Ensure image fits in header and maintains aspect ratio */
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around; /* Adjust space between buttons */
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px; /* Adjust padding for buttons */
+            border: none;
+            border-radius: 5px;
+            background-color: #2FA4E7;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Add smooth transition effect */
+        }
+
+        .buttons button:hover {
+            background-color: #1c7bbf; /* Darker shade on hover */
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 50%;
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: #2FA4E7;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Add smooth transition effect */
+        }
+
+        .search-button:hover {
+            background-color: #1c7bbf; /* Darker shade on hover */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            height: 60vh;
+            overflow-y: auto; /* Add scrollbar when content exceeds container height */
+        }
+
+        .book-header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .book {
+            display: inline-block;
+            margin: 10px;
+            width: 200px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .book img {
+            max-width: 100%;
+            max-height: 70%;
+            margin-bottom: 10px;
+        }
+
+        .book-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .book-author {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">CATALYST CATALOGING LIBRARY SYSTEM
+        <div class="header-left-image"></div>
+        <div class="header-right-image"></div>
+    </div>
+
+    <div class="buttons">
+        <button class ="button" type="button" onclick="studentLogIn()">Student Login</button>
+        <button class ="button" type="button" onclick="staffLogIn()">Librarian/Staff Login</button>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for books...">
+        <button class="search-button">Search</button>
+    </div>
+
+    <div class="container">
+        <div class="book-header">Books</div>
+        <!-- Books will be displayed here dynamically -->
+        <!-- Sample book container below -->
+        <div class="book">
+            <img src="sample_book_image.jpg" alt="Book Image">
+            <div class="book-title">Book Title</div>
+        </div>
+        <div class="book">
+          <img src="sample_book_image.jpg" alt="Book Image">
+          <div class="book-title">Book Title</div>
+      </div>
+      <div class="book">
+        <img src="sample_book_image.jpg" alt="Book Image">
+        <div class="book-title">Book Title</div>
+    </div>
+    <div class="book">
+      <img src="sample_book_image.jpg" alt="Book Image">
+      <div class="book-title">Book Title</div>
+  </div>
+  <div class="book">
+    <img src="sample_book_image.jpg" alt="Book Image">
+    <div class="book-title">Book Title</div>
+</div>
+        <!-- Repeat this structure for each book -->
+    </div>
+</body>
+<script>
+        function studentLogIn(){
+          window.location.href="StudentLogInPage.html";
+        }
+        function staffLogIn(){
+          window.location.href="adminLogIn.html";
+        }
+</script>
+</html>
